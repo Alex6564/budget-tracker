@@ -1,0 +1,21 @@
+services:
+  db:
+    container_name: postgres
+    image: postgres:18.3-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DATABASE=${POSTGRES_DATABASE}
+    ports:
+      - 5433:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - budget-tracker
+
+volumes:
+  postgres_data:
+
+networks:
+  budget-tracker:
